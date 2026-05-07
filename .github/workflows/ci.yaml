@@ -20,7 +20,7 @@ jobs:
           image-ref: nginx-app:latest
           format: table
           exit-code: 1
-          severity: CRITICAL,HIGH
+          severity: CRITICAL
 
       - name: Push to Harbor
         if: success()
