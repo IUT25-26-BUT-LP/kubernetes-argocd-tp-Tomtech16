@@ -22,9 +22,9 @@ jobs:
           exit-code: 1
           severity: CRITICAL
 
-      - name: Push to Harbor
+      - name: Push to Docker Hub
         if: success()
         run: |
-          docker tag nginx-app:latest ${{ secrets.HARBOR_URL }}/library/nginx-app:latest
-          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login ${{ secrets.HARBOR_URL }} -u ${{ secrets.HARBOR_USER }} --password-stdin
-          docker push ${{ secrets.HARBOR_URL }}/library/nginx-app:latest
+          echo "${{ secrets.HARBOR_PASSWORD }}" | docker login -u "${{ secrets.HARBOR_USER }}" --password-stdin
+          docker tag nginx-app:latest tomtech16univ/nginx-app:latest
+          docker push tomtech16univ/nginx-app:latest
